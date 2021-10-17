@@ -1,0 +1,266 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 120px;
+            height: 120px;
+
+            margin: -76px 0 0 -76px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
+        #myDiv {
+            display: none;
+            text-align: center;
+        }
+
+        .stretch-card>.card {
+            width: 100%;
+            min-width: 100%
+        }
+
+        body {
+            background-color: #7878a1
+        }
+
+        .flex {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto
+        }
+
+        @media (max-width:991.98px) {
+            .padding {
+                padding: 1.5rem
+            }
+        }
+
+        @media (max-width:767.98px) {
+            .padding {
+                padding: 1rem
+            }
+        }
+
+        .padding {
+            padding: 3rem
+        }
+
+        .card {
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            -ms-box-shadow: none
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid #3da5f;
+            border-radius: 0
+        }
+
+        .card .card-body {
+            padding: 1.25rem 1.75rem
+        }
+
+        .card .card-title {
+            color: #000000;
+            margin-bottom: 0.625rem;
+            text-transform: capitalize;
+            font-size: 0.875rem;
+            font-weight: 500
+        }
+
+        .card .card-description {
+            margin-bottom: .875rem;
+            font-weight: 400;
+            color: #76838f
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #3da5f4;
+            border-color: #3da5f4
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.875rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1;
+            border-radius: 0.1875rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+        }
+
+        .form-control {
+            border: 1px solid #f3f3f3;
+            font-weight: 400;
+            font-size: 0.875rem
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1.375rem;
+            font-size: 1rem;
+            line-height: 1;
+            color: #495057;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 2px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+        }
+
+        input,
+        .form-control:focus {
+            outline: none;
+            outline-width: 0;
+            outline-color: transparent;
+            box-shadow: none;
+            outline-style: none
+        }
+    </style>
+
+
+    <script>
+        function AutoRefresh(t) {
+            setTimeout("location.reload(true);", t);
+            var preloader = document.getElementById('loader');
+            preloader.style.display = 'none';
+        }
+        function copyToClipboard(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).text()).select();
+            document.execCommand("copy");
+            $temp.remove();
+        }
+
+    </script>
+
+</head>
+
+<body onload="JavaScript:AutoRefresh(5000);">
+    <div id="loader"></div>
+    <p>This page will refresh every 5 seconds.</p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-12 grid-margin">
+                    <center><button type="button" style="background-color: red;" class="btn btn-secondary">
+                        <p style="color: honeydew;">{{amount}} {{currency}}</p>
+                    </button></center><br>
+                    <center><img src="{{ qr_code }}"><br></center><br>
+                    <div class="card">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'
+                                    type='text/css'>
+                                <script
+                                    src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+                               
+
+                                <p style="color:greenyellow;font-size:20px;text-align:center;">After payment do not
+                                    close this page until
+                                    You get a meassage of success It may take time untill 5 minutes</p>
+
+                                <center>
+                                    <p style="font-size:20px;text-align:center;" id="p1">{{address}}</p>
+
+                                    <button type="button" style="background-color: seagreen;" class="btn btn-secondary"
+                                        onclick="copyToClipboard('#p1')">Copy The
+                                        Address</button>
+
+                                </center>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

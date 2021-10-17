@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+<div class="dt-content-wrapper">
+    <!-- Site Content -->
+    <div class="dt-content">
+        <!-- Page Header -->
+        <div class="dt-page__header">
+            <h1 class="dt-page__title">Roi Income</h1>
+        </div>
+        <!-- /page header -->
+        <div class="table-responsive">
+            <table id="example" style="width:100%" class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Date</th>
+                        <th>Package</th>
+                        <th>Income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ user.createdOn }}</td>
+                        <td>{{ user.package.amount }} $</td>
+                        
+                        <td>{{ user.income }} $</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table><br>
+
+            <!--Pagination-->
+            <center>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    {% if users.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ users.previous_page_number }}">Previous</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    {% endif %}
+
+                    {% if users.number|add:'-4' > 1 %}
+                    <li class="page-item"><a class="page-link" href="?page={{ users.number|add:'-5' }}">&hellip;</a>
+                    </li>
+                    {% endif %}
+
+                    {% for i in users.paginator.page_range %}
+                    {% if users.number == i %}
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">
+                            {{ i }}
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                    {% elif i > users.number|add:'-5' and i < users.number|add:'5' %} <li class="page-item"><a
+                            class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if users.paginator.num_pages > users.number|add:'4' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ users.number|add:'5' }}">&hellip;</a>
+                        </li>
+                        {% endif %}
+
+                        {% if users.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ users.next_page_number }}">Next</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                        </li>
+                        {% endif %}
+                </ul>
+            </nav></center><br>
+            <!--end of Pagination-->
+
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="dt-footer">
+        Copyright Bitpaymax © 2021
+    </footer>
+    <!-- /footer -->
+</div>
+<!-- /site content wrapper -->
+
+{% endblock content %}

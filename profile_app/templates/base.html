@@ -1,0 +1,847 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Drift - A fully responsive, HTML5 based admin template">
+    <meta name="keywords"
+        content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
+    <!-- /meta tags -->
+    <title> Bitpaymax</title>
+
+    <!-- Site favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
+    <!-- /site favicon -->
+
+    <!-- Font Icon Styles -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/noir-pro/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/gaxon-icon/styles.css' %}">
+    <!-- /font icon Styles -->
+
+    <!-- Perfect Scrollbar stylesheet -->
+    <link rel="stylesheet" href="{% static 'plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}">
+    <!-- /perfect scrollbar stylesheet -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/chartist/css/chartist.min.css' %}" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/default/theme-dark.min.css' %}">
+
+    <script>
+        var rtlEnable = '';
+        var $mediaUrl = '../';
+        var $baseUrl = '../';
+        var current_path = window.location.href.split('/').pop();
+        if (current_path == '') {
+            current_path = 'index.html';
+        }
+    </script>
+
+    <script src="{% static 'plugins/jquery/js/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/moment/js/moment.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Perfect Scrollbar jQuery -->
+    <script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.min.js' %}"></script>
+    <!-- /perfect scrollbar jQuery -->
+
+    {% block style %}
+    {% endblock style %}
+
+</head>
+
+<body class="dt-layout--default dt-sidebar--fixed dt-header--fixed">
+    <!-- Loader -->
+    <div class="dt-loader-container">
+        <div class="dt-loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10">
+                </circle>
+            </svg>
+        </div>
+    </div>
+    <!-- /loader -->
+    <!-- Root -->
+    <div class="dt-root">
+        <div class="dt-root__inner">
+            <!-- Header -->
+            <header class="dt-header">
+
+                <!-- Header container -->
+                <div class="dt-header__container">
+
+                    <!-- Brand -->
+                    <div class="dt-brand">
+
+                        <!-- Brand tool -->
+                        <div class="dt-brand__tool" data-toggle="main-sidebar">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                        <!-- /brand tool -->
+
+                        <!-- Brand logo -->
+                        <span class="dt-brand__logo">
+                            <a class="dt-brand__logo-link" href="index.html">
+                                <img class="dt-brand__logo-img d-none d-sm-inline-block"
+                                    src="{% static 'assets/images/logo.png' %}" alt="Drift">
+                                <img class="dt-brand__logo-symbol d-sm-none"
+                                    src="{% static 'assets/images/logo-symbol.png' %}" alt="Drift">
+                            </a>
+                        </span>
+                        <!-- /brand logo -->
+
+                    </div>
+                    <!-- /brand -->
+
+                    <!-- Header toolbar-->
+                    <div class="dt-header__toolbar">
+
+                        <!-- Search box
+                        <form class="search-box d-none d-lg-block">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Search in app..." value="" type="search">
+                                <span class="search-icon"><i class="icon icon-search icon-lg"></i></span>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Category
+                                    </button>
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                                        <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                                        <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form> -->
+                        <!-- /search box -->
+
+                        <!-- Header Menu Wrapper -->
+                        <div class="dt-nav-wrapper">
+                            <!-- Header Menu -->
+                            <ul class="dt-nav d-lg-none">
+                                <li class="dt-nav__item dt-notification-search dropdown">
+
+                                    <!-- Dropdown Link -->
+                                    <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"> <i
+                                            class="icon icon-search icon-fw icon-lg"></i> </a>
+                                    <!-- /dropdown link -->
+
+                                    <!-- Dropdown Option -->
+                                    <div class="dropdown-menu">
+
+                                        <!-- Search Box -->
+                                        <form class="search-box right-side-icon">
+                                            <input class="form-control form-control-lg" type="search"
+                                                placeholder="Search in app...">
+                                            <button type="submit" class="search-icon"><i
+                                                    class="icon icon-search icon-lg"></i></button>
+                                        </form>
+                                        <!-- /search box -->
+
+                                    </div>
+                                    <!-- /dropdown option -->
+
+                                </li>
+                            </ul>
+                            <!-- /header menu -->
+
+                        
+                            <!-- Header Menu -->
+                            <ul class="dt-nav">
+                                <li class="dt-nav__item dropdown">
+
+                                    <!-- Dropdown Link -->
+                                    <a href="#" class="dt-nav__link dropdown-toggle no-arrow dt-avatar-wrapper"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img class="dt-avatar size-30"
+                                            src="{% static 'assets/images/user-avatar/domnic-harris.jpg' %}"
+                                            alt="Domnic Harris">
+                                        <span class="dt-avatar-info d-none d-sm-block">
+                                            <span class="dt-avatar-name">{{ user.username }}</span>
+                                        </span> </a>
+                                    <!-- /dropdown link -->
+
+                                    <!-- Dropdown Option -->
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div
+                                            class="dt-avatar-wrapper flex-nowrap p-6 mt-n2 bg-gradient-purple text-white rounded-top">
+                                            <img class="dt-avatar"
+                                                src="{% static 'assets/images/user-avatar/domnic-harris.jpg' %}"
+                                                alt="Domnic Harris">
+                                            <span class="dt-avatar-info">
+                                                <span class="dt-avatar-name">{{ user.username }}</span>
+                                                <span class="f-12">Crypto Marketer</span>
+                                            </span>
+                                        </div>
+                                        <a class="dropdown-item" href="{% url 'profile' %}}"> <i
+                                                class="icon icon-user icon-fw mr-2 mr-sm-1"></i>Account
+                                        
+                                        <a class="dropdown-item" href="{% url 'logout' %}?next={% url 'index' %}"> <i
+                                                class="icon icon-editors icon-fw mr-2 mr-sm-1"></i>Logout
+                                        </a>
+                                    </div>
+                                    <!-- /dropdown option -->
+
+                                </li>
+                            </ul>
+                            <!-- /header menu -->
+                        </div>
+                        <!-- Header Menu Wrapper -->
+
+                    </div>
+                    <!-- /header toolbar -->
+
+                </div>
+                <!-- /header container -->
+
+            </header>
+            <!-- /header -->
+            <!-- Site Main -->
+            <main class="dt-main">
+                <!-- Sidebar -->
+                <aside id="main-sidebar" class="dt-sidebar">
+                    <div class="dt-sidebar__container">
+
+                        <!-- Sidebar Navigation -->
+                        <ul class="dt-side-nav">
+
+                            <!-- Menu Header -->
+                            <li class="dt-side-nav__item dt-side-nav__header">
+                                <span class="dt-side-nav__text">main</span>
+                            </li>
+                            <!-- /menu header -->
+
+                            <!-- Menu Item -->
+                            
+                            <li class="dt-side-nav__item">
+                                <a href="{% url 'profile' %}" class="dt-side-nav__link">
+                                    <i class="icon-lgicon icon-dashboard icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="dt-side-nav__item">
+                                <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow"
+                                    title="Widgets">
+                                    <i class="icon icon-contacts-app icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Profile</span>
+                                </a>
+
+                                <!-- Sub-menu -->
+                                <ul class="dt-side-nav__sub-menu">
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'personalinfo' %}" class="dt-side-nav__link" title="Classic">
+                                            <i class="icon icon-components icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Personal Info</span>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'updateprofile' %}" class="dt-side-nav__link" title="Modern">
+                                            <i class="icon icon-datatable icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Update Profile</span>
+                                        </a>
+                                    </li>
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'changepassword' %}" class="dt-side-nav__link" title="Modern">
+                                            <i class="icon icon-lockscreen icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Change Password</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'changetxnpassword' %}" class="dt-side-nav__link" title="Modern">
+                                            <i class="icon icon-lockscreen icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Change Txn Password</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>
+
+
+                            <li class="dt-side-nav__item">
+                                <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
+                                    <i class="icon icon-metrics icon-fw"></i>
+                                    <span class="dt-side-nav__text">Activation</span>
+                                </a>
+
+                                <!-- Sub-menu -->
+                                <ul class="dt-side-nav__sub-menu">
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'createtransaction' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-listing-dbrd icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Add Fund</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'activateid' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-company icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Activate Id</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'mypacks' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-company icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">My Packages</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'transferfund' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-crypto icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Transfer Fund</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'transferfundhistory' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-crm icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Transfer History</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>
+                            <li class="dt-side-nav__item">
+                                <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
+                                    <i class="icon icon-tables icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">My Team</span>
+                                </a>
+
+                                <!-- Sub-menu -->
+                                <ul class="dt-side-nav__sub-menu">
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'referralteam' user.id %}" class="dt-side-nav__link">
+                                            <i class="icon icon-tables icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">My Referral Team</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'levelteam' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-datatable icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Level Report</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>
+                            <li class="dt-side-nav__item">
+                                <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
+                                    <i class="icon icon-crypto icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">My Income</span>
+                                </a>
+
+                                <!-- Sub-menu -->
+                                <ul class="dt-side-nav__sub-menu">
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'levelincome' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-editor-wysiwyg icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Level Income</span> </a>
+                                    </li>
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'roiincome' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-editor-code icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Roi Income</span> </a>
+                                    </li>
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>
+
+                            
+                            <li class="dt-side-nav__item">
+                                <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
+                                    <i class="icon icon-pickers icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Withdrawal</span>
+                                </a>
+
+                                <!-- Sub-menu -->
+                                <ul class="dt-side-nav__sub-menu">
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'withdrawal' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-date-time-picker icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Request</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'withdrawalhistory' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-color-picker icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">History</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>
+                            <li class="dt-side-nav__item">
+                                <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
+                                    <i class="icon icon-grid icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Ticket Panel</span>
+                                </a>
+
+                                <!-- Sub-menu -->
+                                <ul class="dt-side-nav__sub-menu">
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'supportticket' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-grid icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Support Ticket</span>
+                                        </a>
+                                    </li>
+
+                                    <!-- <li class="dt-side-nav__item">
+                                        <a href="{% url 'supporttickethistory' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-grid-advance icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Ticket Details</span>
+                                        </a>
+                                    </li> -->
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>                            
+
+
+
+                            <li class="dt-side-nav__item">
+                                <a href="{% url 'logout' %}?next={% url 'index' %}" class="dt-side-nav__link" title="Layouts">
+                                    <i class="icon icon-login-page icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Logout</span>
+                                </a>
+                            </li>
+                            <!-- /menu item -->
+
+                            
+                           
+                            <!-- /menu item -->
+
+                        </ul>
+                        <!-- /sidebar navigation -->
+
+                    </div>
+                </aside>
+                <!-- /sidebar -->
+                <!-- Site Content Wrapper -->
+                
+
+                
+                {% block content %}
+
+                {% endblock content %}
+
+                <!-- Theme Chooser -->
+                <!-- <div class="dt-customizer-toggle">
+                    <a href="javascript:void(0)" data-toggle="customizer"> <i
+                            class="icon icon-customizer animation-customizer"></i> </a>
+                </div> -->
+                <!-- /theme chooser -->
+
+                <!-- Customizer Sidebar -->
+                <aside class="dt-customizer dt-drawer position-right">
+                    <div class="dt-customizer__inner">
+
+                        <!-- Customizer Header -->
+                        <div class="dt-customizer__header">
+
+                            <!-- Customizer Title -->
+                            <div class="dt-customizer__title">
+                                <h3 class="mb-0">Theme Settings</h3>
+                            </div>
+                            <!-- /customizer title -->
+
+                            <!-- Close Button -->
+                            <button type="button" class="close" data-toggle="customizer">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- /close button -->
+
+                        </div>
+                        <!-- /customizer header -->
+
+                        <!-- Customizer Body -->
+                        <div class="dt-customizer__body ps-custom-scrollbar">
+                            <!-- Customizer Body Inner  -->
+                            <div class="dt-customizer__body-inner">
+
+                                <!-- Section -->
+                                <section>
+                                    <h4>Theme</h4>
+
+                                    <!-- List -->
+                                    <ul class="dt-list dt-list-sm" id="theme-chooser">
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon"
+                                                    data-theme="light">
+                                                    <img src="{% static 'assets/images/customizer-icons/theme-light.png' %}"
+                                                        alt="Light">
+                                                </a>
+                                                <span class="choose-option__name">Light</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon"
+                                                    data-theme="semidark">
+                                                    <img src="{% static 'assets/images/customizer-icons/theme-normal.png' %}"
+                                                        alt="Normal">
+                                                </a>
+                                                <span class="choose-option__name">Semi-dark</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon"
+                                                    data-theme="dark">
+                                                    <img src="{% static 'assets/images/customizer-icons/theme-dark.png' %}"
+                                                        alt="Dark">
+                                                </a>
+                                                <span class="choose-option__name">Dark</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- /list -->
+
+                                </section>
+                                <!-- /section -->
+
+                                <!-- Section -->
+                                <section>
+                                    <h4>Style</h4>
+
+                                    <!-- List -->
+                                    <ul class="dt-list dt-list-sm">
+                                        <li class="dt-list__item d-none d-lg-block">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" id="toggle-fixed-sidebar"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/fix-sidebar.png' %}"
+                                                        alt="Fix Sidebar">
+                                                </a>
+                                                <span class="choose-option__name">Fix Sidebar</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" id="toggle-fixed-header"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/fix-header.png' %}"
+                                                        alt="Fix Header">
+                                                </a>
+                                                <span class="choose-option__name">Fix Header</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- /list -->
+
+                                </section>
+                                <!-- /section -->
+
+                                <!-- Section -->
+                                <section id="theme-style-chooser">
+                                    <h4>Color</h4>
+
+                                    <!-- List -->
+                                    <ul class="dt-list dt-list-sm dt-color-options">
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style=""></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-2"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-3"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-4"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-5"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-6"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-7"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-8"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-9"></span>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <span class="dt-color-option" data-style="style-10"></span>
+                                        </li>
+                                    </ul>
+                                    <!-- /list -->
+
+                                </section>
+                                <!-- /section -->
+
+                                <!-- Section -->
+                                <section class="d-none d-lg-block" id="sidebar-layout">
+                                    <h4>Sidebar Layout</h4>
+
+                                    <!-- List -->
+                                    <ul class="dt-list dt-list-sm">
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon" id="sl-option1"
+                                                    data-value="folded">
+                                                    <img src="{% static 'assets/images/customizer-icons/folded.png' %}"
+                                                        alt="Folded">
+                                                </a>
+                                                <span class="choose-option__name">Folded</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon" id="sl-option2"
+                                                    data-value="default">
+                                                    <img src="{% static 'assets/images/customizer-icons/default.png' %}"
+                                                        alt="Default">
+                                                </a>
+                                                <span class="choose-option__name">Default</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon" id="sl-option3"
+                                                    data-value="drawer">
+                                                    <img src="{% static 'assets/images/customizer-icons/drawer.png' %}"
+                                                        alt="Drawer">
+                                                </a>
+                                                <span class="choose-option__name">Drawer</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- /list -->
+
+                                </section>
+                                <!-- /section -->
+
+                                <!-- Section -->
+                                <section class="d-none d-lg-block" id="layout-chooser">
+                                    <h4>Layout</h4>
+
+                                    <!-- List -->
+                                    <ul class="dt-list dt-list-sm">
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon"
+                                                    data-layout="framed">
+                                                    <img src="{% static 'assets/images/customizer-icons/framed.png' %}"
+                                                        alt="Framed">
+                                                </a>
+                                                <span class="choose-option__name">Framed</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon"
+                                                    data-layout="full-width">
+                                                    <img src="{% static 'assets/images/customizer-icons/full-width.png' %}"
+                                                        alt="Full Width">
+                                                </a>
+                                                <span class="choose-option__name">Full Width</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="javascript:void(0)" class="choose-option__icon"
+                                                    data-layout="boxed">
+                                                    <img src="{% static 'assets/images/customizer-icons/boxed.png' %}"
+                                                        alt="Boxed">
+                                                </a>
+                                                <span class="choose-option__name">Boxed</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- /list -->
+
+                                </section>
+                                <!-- /section -->
+
+                                <!-- Section -->
+                                <section>
+                                    <h4>Nav Style</h4>
+
+                                    <!-- List -->
+                                    <ul class="dt-list">
+                                        <li class="dt-list__item">
+                                            <div class="choose-option active">
+                                                <a href="http://drift-admin.g-axon.work/default" target="_blank"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-default.png' %}"
+                                                        alt="Layout Default">
+                                                </a>
+                                                <span class="choose-option__name">Default</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="http://drift-admin.g-axon.work/saas" target="_blank"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-saas.png' %}"
+                                                        alt="Layout SAAS">
+                                                </a>
+                                                <span class="choose-option__name">SAAS Layout</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="http://drift-admin.g-axon.work/listing" target="_blank"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-listing.png' %}"
+                                                        alt="Layout listing">
+                                                </a>
+                                                <span class="choose-option__name">Listing</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="http://drift-admin.g-axon.work/intranet" target="_blank"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-intranet.png' %}"
+                                                        alt="Layout Intranet">
+                                                </a>
+                                                <span class="choose-option__name">Intranet</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="http://drift-admin.g-axon.work/back-office" target="_blank"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-back-office.png' %}"
+                                                        alt="Layout Back Office">
+                                                </a>
+                                                <span class="choose-option__name">Back Office</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="http://drift-admin.g-axon.work/back-office-mini"
+                                                    target="_blank" class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-back-office-mini.png' %}"
+                                                        alt="Layout Back Office Minimal">
+                                                </a>
+                                                <span class="choose-option__name">Back Office Minimal</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="http://drift-admin.g-axon.work/modern" target="_blank"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-modern.png' %}"
+                                                        alt="Layout Modern">
+                                                </a>
+                                                <span class="choose-option__name">Modern</span>
+                                            </div>
+                                        </li>
+                                        <li class="dt-list__item">
+                                            <div class="choose-option">
+                                                <a href="http://drift-admin.g-axon.work/crm" target="_blank"
+                                                    class="choose-option__icon">
+                                                    <img src="{% static 'assets/images/customizer-icons/layout-crm.png' %}"
+                                                        alt="Layout CRM">
+                                                </a>
+                                                <span class="choose-option__name">CRM</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- /list -->
+
+                                </section>
+                                <!-- /section -->
+
+                                <!-- Section -->
+                                <section class="d-lg-block">
+                                    <h4>RTL Version</h4>
+
+                                    <a class="btn btn-primary mb-2 btn-block"
+                                        href="http://drift-admin-rtl.g-axon.work/default"><i
+                                            class="icon-open-new-tab"></i> Try RTL Demo</a>
+
+                                </section>
+                                <!-- /section -->
+
+                            </div>
+                            <!-- /customizer body inner -->
+                        </div>
+                        <!-- /customizer body -->
+
+                    </div>
+                </aside>
+                <!-- /customizer sidebar -->
+            </main>
+
+        </div>
+    </div>
+    <!-- /root -->
+
+    <!-- Contact User Information -->
+    <div class="card user-info-card">
+        <div class="p-4">
+            <div class="dt-avatar-wrapper mb-3">
+                <img style="display: none" class="dt-avatar size-50 profile-pic"
+                    src="{% static 'assets/images/user-avatar/domnic-harris.jpg' %}" alt="Domnic Harris"> <span
+                    style="display: none"
+                    class="dt-avatar size-50 bg-orange text-white text-uppercase profile-placeholder">pp</span>
+
+                <div class="dt-avatar-info">
+                    <span class="dt-avatar-name h4 mb-1">Domnic Harris</span>
+                    <span class="dt-avatar-desc f-12">dom.harris@gmail.com</span>
+                </div>
+            </div>
+
+            <div class="mb-1">
+                <i class="icon icon-maps icon-fw mr-1"></i> <span class="f-12">Palo Alto, CA, United States</span>
+            </div>
+
+            <div>
+                <i class="icon icon-contacts icon-fw mr-1"></i> <span class="f-12">20+ Mutual Connections</span>
+            </div>
+        </div>
+
+        <div class="px-4 py-2 border-top d-flex justify-content-between">
+            <a href="javascript:void(0)" class="card-link">Add to Contacts</a>
+            <div class="ml-2 ml-sm-10">
+                <a class="mr-1" href="javascript:void(0)"><i class="icon icon-mail icon-fw icon-xl"></i></a>
+                <a class="mr-1" href="javascript:void(0)"><i class="icon icon-tag-o icon-fw icon-xl"></i></a>
+                <a href="javascript:void(0)"><i class="icon icon-chat-app icon-fw icon-xl"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- /contact user information -->
+    <!-- masonry script -->
+    <script src="{% static 'plugins/masonry-layout/js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/sweetalert2/js/sweetalert2.js' %}"></script>
+    <script src="{% static 'assets/js/default/functions.js' %}"></script>
+    <script src="{% static 'assets/js/default/customizer.js' %}"></script>
+
+    <script src="{% static 'assets/js/default/script.js' %}"></script>
+    <script src="{% static 'plugins/chart.js/js/Chart.min.js' %}"></script>
+    <script src="{% static 'plugins/chartist/js/chartist.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-circle-progress/js/circle-progress.min.js' %}"></script>
+    <script src="{% static 'assets/js/global/charts/dashboard-crypto.js' %}"></script>
+</body>
+
+</html>

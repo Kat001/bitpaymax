@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="dt-content-wrapper">
+
+    <!-- Site Content -->
+    <div class="dt-content">
+        <!-- Page Header -->
+        <div class="dt-page__header">
+            <h1 class="dt-page__title">Activate Id</h1>
+        </div>
+        <center><div class="card" style="width: 18rem;">
+            <div class="card-header" style="background-color: white;color: red;">
+              Available Amount
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" style="color: white;"> {{ fund.available_fund }} $</li>
+            </ul>
+          </div></center>
+        <!-- /page header -->
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <!-- Grid -->
+        <div class="pricing6 py-5 bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <h3 class="mb-3">Pricing to make your Work Effective</h3>
+                        <h6 class="subtitle font-weight-normal">We offer 100% satisafaction and Money back Guarantee
+                        </h6>
+                    </div>
+                </div>
+                <!-- row  -->
+                <div class="row mt-4">
+                    <!-- column  -->
+                    <div class="col-md-6">
+                        <div class="card card-shadow border-0 mb-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="font-weight-medium mb-0">Basic Plan</h5>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 text-center">
+                                        <div class="price-box my-3">
+                                            <sup>$</sup><span class="text-red display-5">10</span>
+                                            <h6 class="font-weight-light"></h6>
+                                            <button type="button" onclick="setInputValue('10')" class="btn btn-primary"
+                                                data-toggle="modal" data-target="#exampleModal"
+                                                data-whatever="@mdo">CHOOSE PLAN </button>
+                                            <!-- <a class="btn btn-info-gradiant font-14 border-0 text-white p-3 btn-block mt-3" href="#">CHOOSE PLAN </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 align-self-center">
+                                        <ul class="list-inline pl-3 font-14 font-weight-medium text-dark">
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>7 Days a
+                                                    Week </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>1 % Daily
+                                                    Income</span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>30$ Total
+                                                    Income </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>300 Days
+                                                    Income</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- column  -->
+                    <!-- column  -->
+                    <div class="col-md-6">
+                        <div class="card card-shadow border-0 mb-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="font-medium m-b-0">Advanced Plan</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 text-center">
+                                        <div class="price-box my-3">
+                                            <sup>$</sup><span class="text-red display-5">50</span>
+                                            <h6 class="font-weight-light"></h6>
+                                            <button type="button" onclick="setInputValue('50')" class="btn btn-primary"
+                                                class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                                                data-whatever="@mdo">CHOOSE PLAN </button>
+                                            <!-- <a class="btn btn-info-gradiant border-0 font-14 text-white p-3 btn-block mt-3" href="#">CHOOSE PLAN </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 align-self-center">
+                                        <ul class="list-inline pl-3 font-14 font-weight-medium text-dark">
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>7 Days a
+                                                    Week </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>1 % Daily
+                                                    Income</span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>150$ Total
+                                                    Income </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>300 Days
+                                                    Income</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- column  -->
+                </div>
+                <div class="row mt-4">
+                    <!-- column  -->
+                    <div class="col-md-6">
+                        <div class="card card-shadow border-0 mb-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="font-weight-medium mb-0">Basic Plan</h5>
+                                    <div class="ml-auto"><span
+                                            class="badge badge-danger font-weight-normal p-2">Popular</span></div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 text-center">
+                                        <div class="price-box my-3">
+                                            <sup>$</sup><span class="text-red display-5">100</span>
+                                            <h6 class="font-weight-light"></h6>
+                                            <button type="button" onclick="setInputValue('100')" class="btn btn-primary"
+                                                class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                                                data-whatever="@mdo">CHOOSE PLAN </button>
+                                            <!-- <a class="btn btn-info-gradiant font-14 border-0 text-white p-3 btn-block mt-3" href="#">CHOOSE PLAN </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 align-self-center">
+                                        <ul class="list-inline pl-3 font-14 font-weight-medium text-dark">
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>7 Days a
+                                                    Week </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>1 % Daily
+                                                    Income</span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>300$ Total
+                                                    Income </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>300 Days
+                                                    Income</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- column  -->
+                    <!-- column  -->
+                    <div class="col-md-6">
+                        <div class="card card-shadow border-0 mb-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="font-medium m-b-0">Advanced Plan</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 text-center">
+                                        <div class="price-box my-3">
+                                            <sup>$</sup><span class="text-red display-5">500</span>
+                                            <h6 class="font-weight-light"></h6>
+                                            <button type="button" onclick="setInputValue('500')" class="btn btn-primary"
+                                                class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                                                data-whatever="@mdo">CHOOSE PLAN </button>
+                                            <!-- <a class="btn btn-info-gradiant border-0 font-14 text-white p-3 btn-block mt-3" href="#">CHOOSE PLAN </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 align-self-center">
+                                        <ul class="list-inline pl-3 font-14 font-weight-medium text-dark">
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>7 Days a
+                                                    Week </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>1 % Daily
+                                                    Income</span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>1500$ Total
+                                                    Income </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>300 Days
+                                                    Income</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- column  -->
+                </div>
+                <div class="row mt-4">
+                    <!-- column  -->
+                    <div class="col-md-6">
+                        <div class="card card-shadow border-0 mb-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="font-weight-medium mb-0">Basic Plan</h5>
+                                    <div class="ml-auto"><span
+                                            class="badge badge-danger font-weight-normal p-2">Popular</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 text-center">
+                                        <div class="price-box my-3">
+                                            <sup>$</sup><span class="text-red display-5">1000</span>
+                                            <h6 class="font-weight-light"></h6>
+                                            <button type="button" onclick="setInputValue('1000')"
+                                                class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal" data-whatever="@mdo">CHOOSE PLAN </button>
+                                            <!-- <a class="btn btn-info-gradiant font-14 border-0 text-white p-3 btn-block mt-3" href="#">CHOOSE PLAN </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 align-self-center">
+                                        <ul class="list-inline pl-3 font-14 font-weight-medium text-dark">
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>7 Days a
+                                                    Week </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>1 % Daily
+                                                    Income</span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>3000$ Total
+                                                    Income </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>300 Days
+                                                    Income</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- column  -->
+                    <!-- column  -->
+                    <div class="col-md-6">
+                        <div class="card card-shadow border-0 mb-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="font-medium m-b-0">Advanced Plan</h5>
+                                    <div class="ml-auto"><span
+                                            class="badge badge-danger font-weight-normal p-2">Popular</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 text-center">
+                                        <div class="price-box my-3">
+                                            <sup>$</sup><span class="text-red display-5">2500</span>
+                                            <h6 class="font-weight-light"></h6>
+                                            <button type="button" onclick="setInputValue('2500')"
+                                                class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal" data-whatever="@mdo">CHOOSE PLAN </button>
+                                            <!-- <a class="btn btn-info-gradiant border-0 font-14 text-white p-3 btn-block mt-3" href="#">CHOOSE PLAN </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 align-self-center">
+                                        <ul class="list-inline pl-3 font-14 font-weight-medium text-dark">
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>7 Days a
+                                                    Week </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>1 % Daily
+                                                    Income</span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>7500$ Total
+                                                    Income </span></li>
+                                            <li class="py-2"><i class="icon-check text-info mr-2"></i> <span>300 Days
+                                                    Income</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- column  -->
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="avail-fund" class="col-form-label">Available Fund:</label>
+                                <input type="text" class="form-control" value="{{ fund.available_fund }} $"
+                                    id="avail-fund" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Package:</label>
+                                <input type="text" class="form-control" id="recipient-name" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Date:</label>
+                                <input type="text" class="form-control" id="today-date" readonly>
+                            </div>
+                        </form>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                onchange="activateButton(this)">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Confirm you want to purchase this package
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="submit" onclick="purchasePackage()" class="btn btn-primary" disabled>Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="dt-footer">
+        Copyright Bitpaymax © 2021
+    </footer>
+    <!-- /footer -->
+</div>
+<!-- /site content wrapper -->
+
+<script>
+    function setInputValue(val) {
+        document.getElementById("recipient-name").value = val + " $";
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = dd + '/' + mm + '/' + yyyy;
+        document.getElementById('today-date').value = today;
+    }
+
+    function purchasePackage() {
+        let packAmount = document.getElementById('recipient-name').value;
+        console.log(packAmount)
+        location.href = packAmount;
+    }
+    function activateButton(element) {
+
+        if (element.checked) {
+            document.getElementById("submit").disabled = false;
+        }
+        else {
+            document.getElementById("submit").disabled = true;
+        }
+
+    }
+
+
+</script>
+
+
+{% endblock content %}

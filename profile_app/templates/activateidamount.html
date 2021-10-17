@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+<div class="dt-content-wrapper">
+    <!-- Site Content -->
+    <div class="dt-content">
+        <!-- Page Header -->
+        <div class="dt-page__header">
+            <h1 class="dt-page__title">Purchase Pack</h1>
+        </div>
+    </div>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Hey!</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+    <center>
+		<div class="container mx-auto mt-5 pt-4 text-center">
+
+			<img
+				src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgyobPWtA8sK4FUdJ7v2mVN1k1XYUwsy1q8A&usqp=CAU">
+
+			<h2 class="mt-3 pt-4">Package Purchased Successfully !!</h2>
+
+			<a href="{% url 'profile' %}" class="btn btn-primary mt-4">Go to Dashboard</a>
+		</div>
+	</center>
+
+    <!-- Footer -->
+    <footer class="dt-footer">
+        Copyright Bitpaymax © 2021
+    </footer>
+    <!-- /footer -->
+</div>
+<!-- /site content wrapper -->
+
+
+{% endblock content %}

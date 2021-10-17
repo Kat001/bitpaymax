@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block content %}
+
+<div class="dt-content-wrapper">
+
+    <!-- Site Content -->
+    <div class="dt-content">
+        <!-- Page Header -->
+        <div class="dt-page__header">
+            <h1 class="dt-page__title">Support Ticket</h1>
+        </div>
+        <!-- /page header -->
+
+        <!-- Grid -->
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <!-- BEGIN NAV TICKET -->
+
+                    <!-- BEGIN TICKET -->
+                    <div class="col-md-9">
+                        <div class="grid support-content">
+                            <div class="grid-body">
+
+
+
+
+                                <!-- BEGIN NEW TICKET -->
+                                <button type="button" class="btn btn-success pull-right" data-toggle="modal"
+                                    data-target="#newIssue">New Issue</button><br>
+                                <div class="modal fade" id="newIssue" tabindex="-1" role="dialog"
+                                    aria-labelledby="newIssue" aria-hidden="true">
+                                    <div class="modal-wrapper">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-blue">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">×</button>
+                                                    <h4 class="modal-title"><i class="fa fa-pencil"></i> </h4>
+                                                </div>
+                                                <form method="post">{% csrf_token %}
+                                                    <div class="modal-body">
+                                                        
+                                                        <div class="form-group">
+                                                            <input name="subject" type="text" class="form-control"
+                                                                placeholder="Subject">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <input name="department" type="text" class="form-control"
+                                                                placeholder="Department">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <textarea name="message" class="form-control"
+                                                                placeholder="Please detail your issue or question"
+                                                                style="height: 120px;"></textarea>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal"><i class="fa fa-times"></i>
+                                                            Discard</button>
+                                                        <button type="submit" class="btn btn-primary pull-right"><i
+                                                                class="fa fa-pencil"></i> Create</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <!-- END NEW TICKET -->
+
+                                <div class="padding"></div>
+
+                                <div class="row">
+                                    <!-- BEGIN TICKET CONTENT -->
+                                    <div class="col-md-12">
+                                        <ul class="list-group fa-padding">
+
+                                            {% for ticket in tickets %}
+                                            <li onclick="modelOpened('{{ticket.prob}}')" style="background-color: white;" class="list-group-item"
+                                                data-toggle="modal" data-target="#issue">
+                                                <div class="media">
+                                                    <i class="fa fa-cog pull-left"></i>
+                                                    <div class="media-body">
+                                                        <strong>Ticket no : #{{ ticket.id }}</strong>
+                                                        <p class="info">Opened On : <a href="#">{{ ticket.createdOn}}</a>
+                                                        </p>
+                                                        <strong>Subject : {{ ticket.subject }}</strong> 
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <br>
+                                            {% endfor %}
+
+                                        </ul>
+
+                                        <!-- BEGIN DETAIL TICKET -->
+                                        <div class="modal fade" id="issue" tabindex="-1" role="dialog"
+                                            aria-labelledby="issue" aria-hidden="true">
+                                            <div class="modal-wrapper">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-blue">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">×</button>
+                                                            <h4 class="modal-title"><i class="fa fa-cog"></i>
+                                                            </h4>
+                                                        </div>
+                                                        <form action="#" method="post">
+                                                            <div class="modal-body">
+                                                                <div class="row">
+
+                                                                    <div class="col-md-10">
+                                                                        <p id="prob">
+                                                                            {{ ticket.subject }}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal"><i class="fa fa-times"></i>
+                                                                    Close</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END DETAIL TICKET -->
+                                    </div>
+                                    <!-- END TICKET CONTENT -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END TICKET -->
+                </div>
+            </section>
+        </div>
+
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="dt-footer">
+        Copyright Bitpaymax © 2021
+    </footer>
+    <!-- /footer -->
+</div>
+<!-- /site content wrapper -->
+
+<script>
+    function modelOpened(data){
+        document.getElementById('prob').innerHTML = data
+        console.log("clicked",data)
+    }
+</script>
+
+
+{% endblock content %}

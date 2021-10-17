@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+<div class="dt-content-wrapper">
+
+    <!-- Site Content -->
+    <div class="dt-content">
+        <!-- Page Header -->
+        <div class="dt-page__header">
+            <h1 class="dt-page__title">Transfer Fund</h1>
+        </div>
+        <!-- /page header -->
+        
+        <center><div class="card" style="width: 18rem;">
+            <div class="card-header" style="background-color: white;color: red;">
+              Available Amount
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" style="color: white;"> {{ obj.available_fund }} $</li>
+            </ul>
+          </div></center>
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <form method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <label for="inputEmail4">Username:</label>
+                    <input type="text" class="form-control" name="user_name">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Amount:</label>
+                    <input type="number" class="form-control" id="inputAddress" name="amount">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAddress">Txn Password:</label>
+                    <input type="Password" class="form-control" id="inputPassword" name="txn_pass" autocomplete="false">
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        
+        </div>
+       
+       
+           
+    </div>
+
+    <!-- Footer -->
+    <footer class="dt-footer">
+        Copyright Bitpaymax © 2021
+    </footer>
+    <!-- /footer -->
+</div>
+<!-- /site content wrapper -->
+
+
+{% endblock content %}

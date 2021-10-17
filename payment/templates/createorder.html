@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+<div class="dt-content-wrapper">
+
+  <!-- Site Content -->
+  <div class="dt-content">
+    <!-- Page Header -->
+    <div class="dt-page__header">
+      <h1 class="dt-page__title">Create Order Page</h1>
+    </div>
+    <center>
+      <div class="card" style="width: 18rem;">
+        <div class="card-header" style="background-color: white;color: red;">
+          Available Amount
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" style="color: white;"> {{ fund.available_fund }} $</li>
+        </ul>
+      </div>
+    </center>
+    <!-- /page header -->
+
+    <!-- Grid -->
+    <div class="col px-md-5">
+      <form method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username:</label>
+          <input type="text" name="username" value="{{user.username}}" class="form-control" id="exampleInputEmail1"
+            aria-describedby="emailHelp" placeholder="Enter email" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="currencyId">Currency:</label>
+          <select onchange="currencyChange()" class="form-control" aria-label=".form-select-lg example" name="currency" id="currencyId"
+            required>
+            <option value = "0" selected>Select Currency</option>
+            <option value="1">INR</option>
+            <option value="2">TRX</option>
+            <option value="3">ETH</option>
+            <option value="4">BTC</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Amount($):</label>
+          <input type="number" number="amount" class="form-control" name="dollorAmount" id="dollorAmount" placeholder="Amount" required>
+        </div>
+
+
+        <!-- <div class="form-group">
+          <label for="exampleInputEmail1" id="currencyLabel">Estimated Amount:</label>
+          <input type="text" name="currencyAmount" class="form-control" id="estimatedAmount" aria-describedby="emailHelp"
+            readonly required>
+
+        </div> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <div class="container mx-auto text-center mt-4" v-if="name && amount" style="background-color: hotpink;">
+        {% if payment %}
+        <form action="{% url 'paymentsuccess' %}" method="POST"> 	{% csrf_token %}
+          <script
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          data-key="rzp_test_L7FuyuMfhRJozZ"
+          data-amount="{{payment.amount}}"
+          data-currency="INR"
+          data-order_id="{{ payment.id }}"
+          data-buttontext="Pay to Bitpaymax"
+          data-name="BITPAYMAX"
+          data-description="Thanks for Purchesing Fund"
+          data-image="https://example.com/your_logo.jpg"
+          data-prefill.name="BITPAYMAX"
+    
+          data-theme.color="#333399"
+         ></script>
+         <input type="hidden" custom="Hidden Element" name="hidden" >
+       </form>
+       {% endif %}
+       </div>
+    </div>
+  </div>
+
+
+
+  <!-- Footer -->
+  <footer class="dt-footer">
+    Copyright Bitpaymax © 2021
+  </footer>
+  <!-- /footer -->
+</div>
+<!-- /site content wrapper -->
+
+<!-- <script>
+  
+  function dollorValueChange(){
+    var currency = document.getElementById('currencyId').value
+    var amount = document.getElementById('dollorAmount').value
+
+    console.log(currency)
+
+    if(currency == "1"){
+      document.getElementById('estimatedAmount').value = parseFloat(amount) * 80
+    }
+    
+    if(currency == "2"){
+      document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.trxAmount }})
+    }
+    
+    if(currency == "3"){
+      document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.ethAmount }})
+    }
+    
+    if(currency == "4"){
+      document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.btcAmount }})
+    }
+
+  }
+  
+  function currencyChange() {
+    var currency = document.getElementById('currencyId').value
+    var amount = document.getElementById('dollorAmount').value
+
+    if (currency == "1") {
+      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (INR):"
+      if (amount != "") {
+        document.getElementById('estimatedAmount').value = amount*80
+      }
+    }
+
+    if (currency == "2") {
+      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (TRX):"
+      if (amount != "") {
+        document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.trxAmount }})
+      }
+    }
+
+    if (currency == "3") {
+      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (ETH):"
+      if (amount != "") {
+        document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.ethAmount }})
+      }
+    }
+
+    if (currency == "4") {
+      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (BTC):"
+      if (amount != "") {
+        document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.btcAmount }})
+      }
+    }
+
+  }
+
+</script> -->
+
+
+{% endblock content %}
