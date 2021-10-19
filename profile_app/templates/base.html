@@ -368,7 +368,26 @@
                                 <!-- /sub-menu -->
                             </li>
 
+                            {% if user.is_superuser %}
+                            <li class="dt-side-nav__item">
+                                <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
+                                    <i class="icon icon-pickers icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Withdrawal</span>
+                                </a>
+
+                                <!-- Sub-menu -->
+                                <ul class="dt-side-nav__sub-menu">
+                                    <li class="dt-side-nav__item">
+                                        <a href="{% url 'adminwithdrawal' %}" class="dt-side-nav__link">
+                                            <i class="icon icon-date-time-picker icon-fw icon-lg"></i>
+                                            <span class="dt-side-nav__text">Withdrawals</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>
                             
+                            {% else %}
                             <li class="dt-side-nav__item">
                                 <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
                                     <i class="icon icon-pickers icon-fw icon-lg"></i>
@@ -393,6 +412,13 @@
                                 </ul>
                                 <!-- /sub-menu -->
                             </li>
+                            
+                            
+                            {% endif%}
+                            
+                            
+                            
+                            
                             <li class="dt-side-nav__item">
                                 <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow">
                                     <i class="icon icon-grid icon-fw icon-lg"></i>

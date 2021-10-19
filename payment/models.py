@@ -36,3 +36,22 @@ class Payment(models.Model):
 
     def __str__(self):
         return user.username
+
+
+class Bank_Info(models.Model):
+	user = models.OneToOneField("account.Account", on_delete=models.CASCADE)
+	account_holder_name = models.CharField(max_length=40,default="")
+	account_number = models.CharField(max_length=30,default='')
+	branch_name = models.CharField(max_length=40,default='')
+	ifsc_code = models.CharField(max_length=20,default="")
+	bank_name = models.CharField(max_length=30,default='')
+	nominee_name = models.CharField(max_length=30,default="")
+	cheak = models.BooleanField(default=False)
+
+	@property
+	def username(self):
+		return self.user.username
+
+
+	def __str__(self):
+		return(f'{self.user.username}')

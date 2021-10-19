@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Package,Fund,Fundrecord,Roiincome,LevelIncome,SupportTicket
+from .models import Package,Fund,Fundrecord,Roiincome,LevelIncome,SupportTicket,Withdrawal
 # Register your models here.
 
 class PackageAdmin(Package):
@@ -17,3 +17,4 @@ admin.site.register(Fundrecord)
 admin.site.register(Roiincome)
 admin.site.register(LevelIncome)
 admin.site.register(SupportTicket)
+admin.site.register(Withdrawal)

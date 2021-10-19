@@ -92,6 +92,7 @@ class Withdrawal(models.Model):
     cryptoPayment = models.FloatField(default=0)
     createdOn = models.DateTimeField(auto_now_add=True)
     note = models.CharField(max_length=300,default="")
+    check = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

@@ -31,6 +31,11 @@ urlpatterns = [
     path('roi-income/', views.roiIncome, name="roiincome"),
 
     # Withdrawal related paths.....
+    path('admin-withdrawal/', views.adminWithdrawal, name="adminwithdrawal"),
+    path('admin-withdrawal/accept/<int:iid>', views.adminWithdrawalAccept, name="adminwithdrawalaccept"),
+    path('admin-withdrawal/cancel/<int:iid>', views.adminWithdrawalCancel, name="adminwithdrawalcancel"),
+    
+    
     path('withdrawal/', views.withdrawal, name="withdrawal"),
     path('withdrawal-history/', views.withdrawalHistory, name="withdrawalhistory"),
 

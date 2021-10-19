@@ -9,6 +9,7 @@ from profile_app.models import Fund
 
 import razorpay
 import requests
+import pdb
 
 
 # Create your views here.
@@ -52,18 +53,43 @@ def createTransaction(request):
                 request.session['dollarAmount'] = dollarAmount
                 return redirect('checktransaction')
             
-            elif selectedCurrency == 'INR':
-                client = razorpay.Client(auth= ('rzp_test_L7FuyuMfhRJozZ','FvHFb8CHOsUQiYXeyrhbP5Ij'))
-                paymentClient = client.order.create({'amount':dollarAmount*100*80, 'currency':'INR','payment_capture':'1' })
+            elif selectedCurrency == 'INR':  
                 
                 payment_obj = Payment(user=user, currency=selectedCurrency, 
-                    txId=paymentClient['id'], dollarAmount=dollarAmount,)
+                    txId="paymentClient['id']", dollarAmount=dollarAmount,)
                 payment_obj.save()
-
                 request.session['payment_id'] = payment_obj.id
                 request.session['dollarAmount'] = dollarAmount
-
-                return render(request,'createtransaction.html',{'payment':paymentClient,'fund' : fund})        
+                
+                payload = {
+                    "amount": dollarAmount*75,
+                    "contact_number": user.phon_no,
+                    "email_id": user.email,
+                    "currency": "INR",
+                    "mtx": str(payment_obj.id)
+                }
+                
+                headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": settings.OPENBANK_AUTH
+                }
+                
+                url = settings.OPENBANK_BASE_URL+'/api/payment_token'
+                response = requests.request("POST", url, json=payload, headers=headers)
+                res_data = response.json()
+                print(response.text)
+                print(res_data)
+                if res_data['id']:
+                    return render(request,'createtransaction.html',{
+                        'payment':True,
+                        'fund' : fund,
+                        'token_id':res_data['id'],
+                        'remote_script' : "https://sandbox-payments.open.money/layer",
+                        "accesskey": settings.OPENBANK_API_KEY,
+                        })        
+                else:
+                    return render(request,'createtransaction.html',{'fund' : fund})        
         
         except Exception as e:
             print(e)
@@ -119,25 +145,30 @@ def paymentSuccess(request):
 
 
 def createOrder(request):
-    url = "https://test.cashfree.com/api/v1/order/create"
 
-    payload={
-        'appId': '102751a0cb37f516a65e6eed74157201',
-        'secretKey': '5fe7a1a61683b7e10ba50413e019381091f72ef7',
-        'orderId': 'order_00112',
-        'orderAmount': '500',
-        'orderCurrency': 'INR',
-        'orderNote': 'Test order',
-        'customerEmail': 'sample@gmail.com',
-        'customerName': 'Cashfree User',
-        'customerPhone': '9999999999',
-        'returnUrl': 'http://localhost/handleResponse.php',
-        'notifyUrl': 'http://localhost/handlePaymentStatus.php'
+    payload = {
+        "amount": 500,
+        "udf": "string",
+        "contact_number": "9012101244",
+        "email_id": "dev@gmail.com",
+        "currency": "INR",
+        "mtx": "string111212"
+    }
+
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": settings.OPENBANK_AUTH
         }
-    
-    files=[
-    ]
-    headers = {}
-    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+    response = requests.request("GET", url,headers=headers)
+    print(response)
+
     print(response.text)
-    return render(request,'createorder.html')
+
+    d = {
+        'token_id':"sb_pt_BTsdBdchq6jelvn",
+        'remote_script' : "https://sandbox-payments.open.money/layer",
+        "accesskey": 'c63d1670-300d-11ec-8522-7b6387f0dcea',
+    }
+    return render(request,'checkout.html',d)

@@ -62,30 +62,59 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
-      <div class="container mx-auto text-center mt-4" v-if="name && amount" style="background-color: hotpink;">
+      <div class="container mx-auto text-center mt-4" v-if="name && amount" style="background-color: hotpink;"> 
+        
         {% if payment %}
-        <form action="{% url 'paymentsuccess' %}" method="POST"> 	{% csrf_token %}
-          <script
-          src="https://checkout.razorpay.com/v1/checkout.js"
-          data-key="rzp_test_L7FuyuMfhRJozZ"
-          data-amount="{{payment.amount}}"
-          data-currency="INR"
-          data-order_id="{{ payment.id }}"
-          data-buttontext="Pay to Bitpaymax"
-          data-name="BITPAYMAX"
-          data-description="Thanks for Purchesing Fund"
-          data-image="https://example.com/your_logo.jpg"
-          data-prefill.name="BITPAYMAX"
-    
-          data-theme.color="#333399"
-         ></script>
-         <input type="hidden" custom="Hidden Element" name="hidden" >
-       </form>
-       {% endif %}
-       </div>
+
+        <div class="dv">
+            <input id="submit" name="submit" value="Pay" type="button" onclick="triggerLayer();">
+        </div>
+        <div id="layerloader" class="dv">{{ error }}</div>
+        <form action="" method="post" style="display: none" name="layer_payment_int_form">
+            <input type="hidden" name="layer_pay_token_id" value="{{ token_id }}">
+            <input type="hidden" name="tranid" value="{{ txnid }}">
+            <input type="hidden" name="layer_order_amount" value="{{ amount }}">
+            <input type="hidden" id="layer_payment_id" name="layer_payment_id" value="">
+            <input type="hidden" id="fallback_url" name="fallback_url" value="">
+            <input type="hidden" name="hash" value="{{ hash }}">
+        </form>  
+        
+        {% endif %}
+    </div>
     </div>
   </div>
 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="{{ remote_script }}"></script>
+  <script type="text/javascript">
+    var layer_params = {payment_token_id:'{{ token_id }}',accesskey:'{{ accesskey }}'};
+    function triggerLayer() {
+
+        Layer.checkout(
+        {
+            token: layer_params.payment_token_id,
+            accesskey: layer_params.accesskey,
+            theme: {
+                logo : "{% static 'assets/images/bitpaylogohome2.png' %}",
+                color: "#3d9080",
+                error_color : "#ff2b2b"
+          }			
+        },
+        function (response) {
+            console.log(response)
+            if(response !== null || response.length > 0 ){
+                if(response.payment_id !== undefined){
+                    document.getElementById('layer_payment_id').value = response.payment_id;
+                }
+            }
+            document.layer_payment_int_form.submit();
+        },
+        function (err) {
+            alert(err.message);
+        });
+    }
+</script>
 
 
   <!-- Footer -->
@@ -96,67 +125,8 @@
 </div>
 <!-- /site content wrapper -->
 
-<!-- <script>
-  
-  function dollorValueChange(){
-    var currency = document.getElementById('currencyId').value
-    var amount = document.getElementById('dollorAmount').value
-
-    console.log(currency)
-
-    if(currency == "1"){
-      document.getElementById('estimatedAmount').value = parseFloat(amount) * 80
-    }
-    
-    if(currency == "2"){
-      document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.trxAmount }})
-    }
-    
-    if(currency == "3"){
-      document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.ethAmount }})
-    }
-    
-    if(currency == "4"){
-      document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.btcAmount }})
-    }
-
-  }
-  
-  function currencyChange() {
-    var currency = document.getElementById('currencyId').value
-    var amount = document.getElementById('dollorAmount').value
-
-    if (currency == "1") {
-      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (INR):"
-      if (amount != "") {
-        document.getElementById('estimatedAmount').value = amount*80
-      }
-    }
-
-    if (currency == "2") {
-      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (TRX):"
-      if (amount != "") {
-        document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.trxAmount }})
-      }
-    }
-
-    if (currency == "3") {
-      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (ETH):"
-      if (amount != "") {
-        document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.ethAmount }})
-      }
-    }
-
-    if (currency == "4") {
-      document.getElementById('currencyLabel').innerHTML = "Estimated Amount (BTC):"
-      if (amount != "") {
-        document.getElementById('estimatedAmount').value = parseFloat(amount) * parseFloat({{ rate.btcAmount }})
-      }
-    }
-
-  }
-
-</script> -->
 
 
 {% endblock content %}
+
+

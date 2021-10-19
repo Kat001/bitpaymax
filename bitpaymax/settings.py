@@ -81,6 +81,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'bitpaymax',
+#         'USER': 'postgres',
+#         'HOST': 'localhost',
+#         'PASSWORD': '2012',
+#         'PORT': '5432',
+#         }
+#     }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -141,3 +153,7 @@ MESSAGE_TAGS = {
 COINPAYMENTS_API_KEY = '4b4f7c51d0583384f082cc6894b40149063f17036da52bd7b7965a18fc53e89d'
 COINPAYMENTS_API_SECRET = 'b33162fc07f678eaB1d9aab22e5dc739eDb8a5030a0748e58bd7763F604cA4bd'
 
+OPENBANK_API_KEY = '45129dc0-304b-11ec-9b2e-8b5a90173db2'
+OPENBANK_API_SECRET = '8b57be10778a9e9c95f6c930d5ed94aff8b56b28'
+OPENBANK_AUTH = OPENBANK_API_KEY+':'+OPENBANK_API_SECRET
+OPENBANK_BASE_URL = "https://sandbox-icp-api.bankopen.co"

@@ -676,3 +676,79 @@ def roiIncome(request):
         }
 
     return render(request,'roiincome.html',d)
+
+def adminWithdrawal(request):
+    user = request.user
+    if user.is_superuser:
+        directUsers = Withdrawal.objects.filter(check=False).order_by('createdOn')
+        print(directUsers)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(directUsers, 10)
+
+        try:
+            users = paginator.page(page)
+        except PageNotAnInteger:
+            users = paginator.page(1)
+        except EmptyPage:
+            users = paginator.page(paginator.num_pages)
+    else:
+        users = []
+
+    d = {
+        'users':users,
+        }
+
+    return render(request,'adminwithdrawal.html',d)
+
+def adminWithdrawalCancel(request,iid):
+    user = request.user
+    if user.is_superuser:
+        # Do all the canceletion part here
+        w_obj = Withdrawal.objects.get(id=iid)
+        w_obj.check = True
+        w_obj.user.available_amount += w_obj.dollarAmount
+        w_obj.save()
+        
+        
+        directUsers = Withdrawal.objects.filter(check=False).order_by('createdOn')
+        print(directUsers)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(directUsers, 10)
+
+        try:
+            users = paginator.page(page)
+        except PageNotAnInteger:
+            users = paginator.page(1)
+        except EmptyPage:
+            users = paginator.page(paginator.num_pages)
+    else:
+        users = []
+
+    d = {
+        'users':users,
+        }
+    return render(request,'adminwithdrawal.html',d)
+
+
+def adminWithdrawalAccept(request,iid):
+    user = request.user
+    if user.is_superuser:
+        directUsers = Withdrawal.objects.filter(check=False).order_by('createdOn')
+        print(directUsers)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(directUsers, 10)
+
+        try:
+            users = paginator.page(page)
+        except PageNotAnInteger:
+            users = paginator.page(1)
+        except EmptyPage:
+            users = paginator.page(paginator.num_pages)
+    else:
+        users = []
+
+    d = {
+        'users':users,
+        }
+    return render(request,'adminwithdrawal.html',d)
+
