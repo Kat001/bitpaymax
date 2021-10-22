@@ -6,10 +6,13 @@ from profile_app.models import Fund
 from payment.models import ExchangeRates
 from payment.models import Payment
 from profile_app.models import Fund
+from django.utils import timezone
+
 
 import razorpay
 import requests
 import pdb
+import random
 
 
 # Create your views here.
@@ -60,13 +63,17 @@ def createTransaction(request):
                 payment_obj.save()
                 request.session['payment_id'] = payment_obj.id
                 request.session['dollarAmount'] = dollarAmount
+
+                # mtx = "{}{}.{}.{}".format( 
+                #     user.phon_no, user.username, 
+                #     user.id, int(timezone.now().timestamp()))
                 
                 payload = {
                     "amount": dollarAmount*75,
                     "contact_number": user.phon_no,
                     "email_id": user.email,
                     "currency": "INR",
-                    "mtx": str(payment_obj.id)
+                    "mtx": str(random.randint(1,200000))
                 }
                 
                 headers = {
@@ -78,14 +85,14 @@ def createTransaction(request):
                 url = settings.OPENBANK_BASE_URL+'/api/payment_token'
                 response = requests.request("POST", url, json=payload, headers=headers)
                 res_data = response.json()
-                print(response.text)
                 print(res_data)
+                print("id is:",res_data['id'])
                 if res_data['id']:
                     return render(request,'createtransaction.html',{
                         'payment':True,
                         'fund' : fund,
                         'token_id':res_data['id'],
-                        'remote_script' : "https://sandbox-payments.open.money/layer",
+                        'remote_script' : "https://payments.open.money/layer",
                         "accesskey": settings.OPENBANK_API_KEY,
                         })        
                 else:

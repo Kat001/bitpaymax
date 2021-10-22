@@ -14,11 +14,13 @@ idna==3.2
 Pillow==8.3.2
 platformdirs==2.2.0
 psycopg2-binary==2.9.1
+PyJWT==2.3.0
 pytz==2021.1
 razorpay==1.2.0
 requests==2.26.0
 six==1.15.0
 sqlparse==0.4.2
+twilio==7.2.0
 urllib3==1.26.7
 virtualenv==20.6.0
 whitenoise==5.3.0

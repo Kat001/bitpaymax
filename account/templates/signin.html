@@ -237,7 +237,7 @@
             -o-background-size: cover;
             -moz-background-size: cover;
             -ms-background-size: cover;
-            background-color: #000000;
+            background-color: #f3ecec;
             text-align: center;
         }
 
@@ -1020,7 +1020,7 @@
             width: 100%;
             top: -311px;
             left: 0;
-            background-color: Black;
+            background-color: rgb(248, 248, 245);
             filter: alpha(opacity=60);
             opacity: 0.6;
             -moz-opacity: 0.8;
@@ -1075,7 +1075,7 @@
             {% endfor %}
             <h2 class="sub-agileits-w3layouts">Sign In</h2>
             <form method="post" id="myform">{% csrf_token %}
-                <input type="text" class="form-control" name="username" required="" placeholder="Enter Username">
+                <input type="text" class="form-control" value="{{ user_name }}" name="username" required="" placeholder="Enter Username">
                 <label id="chsp" style="color:#ff6060"></label>
                 <input type="password" class="form-control" name="password" required="" id="txtReffer"
                     onkeypress="return AvoidSpace(event);"

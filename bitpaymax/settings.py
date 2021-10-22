@@ -74,23 +74,23 @@ WSGI_APPLICATION = 'bitpaymax.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bitpaymax',
-        'USER': 'postgres',
-        'HOST': 'localhost',
-        'PASSWORD': '2012',
-        'PORT': '5432',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'bitpaymax',
+#         'USER': 'postgres',
+#         'HOST': 'localhost',
+#         'PASSWORD': '2012',
+#         'PORT': '5432',
+#         }
+#     }
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
@@ -157,7 +157,11 @@ MESSAGE_TAGS = {
 COINPAYMENTS_API_KEY = '4b4f7c51d0583384f082cc6894b40149063f17036da52bd7b7965a18fc53e89d'
 COINPAYMENTS_API_SECRET = 'b33162fc07f678eaB1d9aab22e5dc739eDb8a5030a0748e58bd7763F604cA4bd'
 
-OPENBANK_API_KEY = '45129dc0-304b-11ec-9b2e-8b5a90173db2'
-OPENBANK_API_SECRET = '8b57be10778a9e9c95f6c930d5ed94aff8b56b28'
+OPENBANK_API_KEY = '8e504350-31d6-11ec-abe2-15b49c29343f'
+OPENBANK_API_SECRET = '5b5e73ed8386cf33e2ddf14d7e6cccccef9b817a'
 OPENBANK_AUTH = OPENBANK_API_KEY+':'+OPENBANK_API_SECRET
-OPENBANK_BASE_URL = "https://sandbox-icp-api.bankopen.co"
+OPENBANK_BASE_URL = "https://icp-api.bankopen.co"
+
+# Twilio setup varioables....
+TWILIO_S_ID = "AC3e216bef2b2d10f3d43b8eb3aa9e7b9e"
+TWILIO_AUTH_TOKEN = "959f6756d49879626854eefc142cad87"

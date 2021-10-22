@@ -6,6 +6,9 @@ from .models import Account
 from django.contrib.auth import logout
 from django.contrib.auth.models import auth
 from profile_app.models import Fund
+from django.conf import settings
+
+from twilio.rest import Client
 
 
 
@@ -45,9 +48,23 @@ def signup(request):
                 user.save()
                 fund = Fund(user = user)
                 fund.save()
+                request.session['user_name'] = user.username
+                request.session['password'] = password
+
+                # try:
+                #     # send msg to that no.........
+                #     client = Client(settings.TWILIO_S_ID, settings.TWILIO_AUTH_TOKEN)
+                #     message = client.messages.create(
+                #                         body="Welcome to Bitpaymax " + "username = " + user.username + " Password = " + str(password) + " Txnpass = "+str(txnPassword),
+                #                         from_='+13526676754',
+                #                         to='+91' + mobile_no
+                #                     )
+                #     print("msg send successs")
+                # except Exception as e:
+                #     print("no error",e)
 
                 # Send Id and pass on Mobile number with id and password.....
-                messages.success(request,'User Created Successfully!!')
+                messages.success(request,'User Created Successfully!!\nusername : '+user.username)
                 return redirect('signin')
 
 
@@ -65,6 +82,11 @@ def signup(request):
     return render(request,'signup.html')
 
 def signin(request):
+    try:
+        user_name = request.session['user_name']
+    except Exception as e:
+        user_name = ""
+    
     if request.method == 'POST':
         u_name = request.POST.get('username')
         pass1 = request.POST.get('password')
@@ -78,4 +100,5 @@ def signin(request):
         else:
             messages.error(request,'Wrong username or password!!')
             return redirect('signin')
-    return render(request,'signin.html')
+    
+    return render(request,'signin.html',{'user_name':user_name})
