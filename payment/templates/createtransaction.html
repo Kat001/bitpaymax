@@ -70,7 +70,7 @@
             <input id="submit" name="submit" value="Pay" type="button" onclick="triggerLayer();">
         </div>
         <div id="layerloader" class="dv">{{ error }}</div>
-        <form action="" method="post" style="display: none" name="layer_payment_int_form">{% csrf_token %}
+        <form method="post" style="display: none" name="layer_payment_int_form">{% csrf_token %}
             <input type="hidden" name="layer_pay_token_id" value="{{ token_id }}">
             <input type="hidden" name="tranid" value="{{ txnid }}">
             <input type="hidden" name="layer_order_amount" value="{{ amount }}">

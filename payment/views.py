@@ -7,6 +7,10 @@ from payment.models import ExchangeRates
 from payment.models import Payment
 from profile_app.models import Fund
 from django.utils import timezone
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
 
 
 import razorpay
@@ -23,8 +27,14 @@ def createTransaction(request):
     fund = Fund.objects.get(user=user)
     rate = ExchangeRates.objects.last()
     if request.method == 'POST':
-        currency = request.POST.get('currency')
-        dollarAmount = float(request.POST.get('dollorAmount'))
+        try:
+            currency = request.POST.get('currency')
+            dollarAmount = float(request.POST.get('dollorAmount'))
+        except Exception as e:
+            currency = 1
+            dollarAmount = 0
+
+            
         if currency == "1":
             selectedCurrency = "INR"
         elif currency == "2":
@@ -70,6 +80,7 @@ def createTransaction(request):
                 
                 payload = {
                     "amount": dollarAmount*75,
+                    "udf": user.username,
                     "contact_number": user.phon_no,
                     "email_id": user.email,
                     "currency": "INR",
@@ -179,3 +190,10 @@ def createOrder(request):
         "accesskey": 'c63d1670-300d-11ec-8522-7b6387f0dcea',
     }
     return render(request,'checkout.html',d)
+
+class PaymentCallback(APIView):
+    
+    def post(self, request, format=None):
+        print(request)
+        print(request.data)
+        return Response("msgDone")

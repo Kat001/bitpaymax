@@ -7,6 +7,9 @@ urlpatterns = [
     path('check-transaction/', views.checkTransaction, name="checktransaction"),
     path('payment-success/', views.paymentSuccess, name="paymentsuccess"),
 
+    #Webhook ....
+    path('payment-callback/',views.PaymentCallback.as_view(), name="paymentcallback"),
+
     #---------
     path('create-order/', views.createOrder, name="createorder"),
 ]
