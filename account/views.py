@@ -64,7 +64,7 @@ def signup(request):
                 #     print("no error",e)
 
                 # Send Id and pass on Mobile number with id and password.....
-                messages.success(request,'User Created Successfully!!\nusername : '+user.username +'\nPassword: '+password)
+                messages.success(request,'User Created Successfully!!\nusername : '+user.username +'\nPassword: '+password+'\nTxnPassword: '+txnPassword)
                 return redirect('signin')
 
 
