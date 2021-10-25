@@ -36,6 +36,18 @@
     <!-- Color CSS -->
     <link id="layoutstyle" rel="stylesheet" href="{% static 'assets2/color/theme.css' %}">
 
+    <style>
+            #popup {
+            display:none;
+            position:absolute;
+            margin:0 auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+    }
+    </style>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106310707-1"></script>
     <script>
@@ -122,6 +134,28 @@
         </div>
     </header>
     <!-- END HEADER -->
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+              <!-- <h4 class="modal-title">Modal Header</h4> -->
+            </div>
+            <div class="modal-body">
+                <Center><h1><img src="{% static 'assets/images/welcomebitpay.png'%}"></h1></Center>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+
+
 
     <!-- START SECTION BANNER -->
 
@@ -862,6 +896,14 @@
     <!-- END FOOTER SECTION -->
 
     <a href="#" class="scrollup btn-default"><i class="ion-ios-arrow-up"></i></a>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>
+ $(window).load(function(){        
+   $('#myModal').modal('show');
+    }); 
+    </script>
 
     <!-- Latest jQuery -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

@@ -9,7 +9,7 @@ from profile_app.models import Fund
 from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from account.models import Account
 
 
 
@@ -74,17 +74,19 @@ def createTransaction(request):
                 request.session['payment_id'] = payment_obj.id
                 request.session['dollarAmount'] = dollarAmount
 
-                # mtx = "{}{}.{}.{}".format( 
-                #     user.phon_no, user.username, 
-                #     user.id, int(timezone.now().timestamp()))
-                
+                while True:
+                    mtx = str(random.randint(1,2000000))
+                    if mtx not in Payment.objects.values_list('mtx',flat=True):
+                        break
+                    else:
+                        pass
                 payload = {
                     "amount": dollarAmount*75,
                     "udf": user.username,
                     "contact_number": user.phon_no,
                     "email_id": user.email,
                     "currency": "INR",
-                    "mtx": str(random.randint(1,200000))
+                    "mtx": mtx+"-"+user.username
                 }
                 
                 headers = {
@@ -99,6 +101,8 @@ def createTransaction(request):
                 print(res_data)
                 print("id is:",res_data['id'])
                 if res_data['id']:
+                    payment_obj.mtx = res_data['mtx']
+                    payment_obj.save()
                     return render(request,'createtransaction.html',{
                         'payment':True,
                         'fund' : fund,
@@ -161,39 +165,54 @@ def paymentSuccess(request):
         pass
     return render(request,'paymentsuccess.html')
 
-
-def createOrder(request):
-
+def payout(request):
+    print("payout rill statreted")
     payload = {
-        "amount": 500,
-        "udf": "string",
-        "contact_number": "9012101244",
-        "email_id": "dev@gmail.com",
-        "currency": "INR",
-        "mtx": "string111212"
+        "bene_account_number": "string",
+        "ifsc_code": "string",
+        "recepient_name": "string",
+        "email_id": "string",
+        "mobile_number": "string",
+        "otp": "string",
+        "debit_account_number": "string",
+        "transaction_types_id": 0,
+        "amount": "string",
+        "merchant_ref_id": "string",
+        "purpose": "string",
+        "vpa": "string"
     }
-
+    
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Authorization": settings.OPENBANK_AUTH
-        }
-
-    response = requests.request("GET", url,headers=headers)
-    print(response)
-
-    print(response.text)
-
-    d = {
-        'token_id':"sb_pt_BTsdBdchq6jelvn",
-        'remote_script' : "https://sandbox-payments.open.money/layer",
-        "accesskey": 'c63d1670-300d-11ec-8522-7b6387f0dcea',
     }
-    return render(request,'checkout.html',d)
+    
+    url = settings.OPENBANK_BASE_URL +'/1/payouts/otp'
+    response = requests.request("POST", url, headers=headers)
+    print(response.text)
+    return render(request,'createtransaction.html')
+
+
 
 class PaymentCallback(APIView):
-    
+  
     def post(self, request, format=None):
         print(request)
         print(request.data)
+        try:
+            if request.data['event'] == "payment_token_paid" and request.data['status']=="paid":
+                user_name = request.data['mtx'].split('-')[1]
+                payment_obj = Payment.objects.get(mtx=request.data['mtx'])
+                payment_obj.status = True
+                payment_obj.save()
+                user_obj = Account.objects.get(username=user_name)
+                fund_obj = Fund.objects.get(user = user_obj)
+                fund_obj.available_fund += float(request.data['amount'])/75
+                fund_obj.save()
+                user_obj.save()
+                return Response("msgDone")
+        except Exception as e:
+            print(e)
+            return Response("Not Done")
         return Response("msgDone")

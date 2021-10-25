@@ -33,9 +33,10 @@ class Payment(models.Model):
     dollarAmount = models.FloatField(default=0)
     cryptoPayment = models.FloatField(default=0)
     createdOn = models.DateTimeField(auto_now_add=True)
+    mtx = models.CharField(max_length=200,default="")
 
     def __str__(self):
-        return user.username
+        return self.user.username
 
 
 class Bank_Info(models.Model):
