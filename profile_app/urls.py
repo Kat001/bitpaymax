@@ -13,8 +13,10 @@ urlpatterns = [
     # Id related paths......
     path('add-fund/', views.addFund, name="addfund"),
     path('activate-id/', views.activateId, name="activateid"),
+    path('activate-team-id/', views.activateTeamId, name="activateteamid"),
     path('my-packs/', views.myPacks, name="mypacks"),
     path('activate-id/<str:amount>', views.activateIdAmount, name="activateidamount"),
+    path('activate-team-id/<str:amount>/<str:userid>', views.activateTeamIDAmount, name="activateteamidamount"),
     path('transfer-fund/', views.transferFund, name="transferfund"),
     path('transfer-fund-history/', views.transferFundHistory, name="transferfundhistory"),
 

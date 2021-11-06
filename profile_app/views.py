@@ -137,6 +137,7 @@ def activateId(request):
     }
     return render(request,'activateid.html',d)
 
+@login_required
 def activateIdAmount(request,amount):
     user = request.user
     amount = int(amount.replace(" $",""))
@@ -166,6 +167,53 @@ def activateIdAmount(request,amount):
         print(e)
         pass
     return render(request,'activateidamount.html')
+
+@login_required
+def activateTeamId(request):
+    user = request.user
+    fund_obj = Fund.objects.get(user=user)
+    if request.method == "POST":
+        print("post called")
+    d = {
+        'fund' : fund_obj,
+    }
+    return render(request,'activateteamidamount.html',d)
+
+@login_required
+def activateTeamIDAmount(request,amount,userid):
+    user = request.user
+    amount = int(amount.replace(" $",""))
+    try:
+        package = Package.objects.get(amount=amount)
+        fund = Fund.objects.get(user=user)
+        if fund.available_fund >= amount:
+            if package in user.packages.all():
+                messages.error(request,'This Package is Already Purchased!')
+                return redirect('activateteamid')
+            else:
+                activatedUser = Account.objects.get(username=userid)
+                fund.available_fund -= amount
+                activatedUser.packages.add(package)
+                activatedUser.is_active1 = True
+                activatedUser.is_able_for_income = True
+                fund.save()
+                user.save()
+                activatedUser.save()
+                messages.success(request,"Package Purchased Successfully!")
+                return redirect('activateteamid')
+        else:
+            messages.error(request,'Not Enough Balance For This Package!')
+            return redirect('activateteamid')
+
+    except Account.DoesNotExist:
+        print("accoynt does not exxll")
+        messages.error(request,'User id is wrong!')
+        return redirect('activateteamid')
+    except Exception as e:
+        messages.error(request,str(e))
+        return redirect('activateteamid')
+    return render(request,'activateteamidamount.html')
+
 
 @login_required
 def transferFund(request):
