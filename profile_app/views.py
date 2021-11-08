@@ -755,6 +755,7 @@ def adminWithdrawalCancel(request,iid):
         w_obj = Withdrawal.objects.get(id=iid)
         w_obj.check = True
         w_obj.user.available_amount += w_obj.dollarAmount
+        user.save()
         w_obj.save()
         
         
