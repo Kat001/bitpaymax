@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block style %}
+
 {% endblock style %}
 
 {% block content %}
@@ -16,16 +17,31 @@
         </div>
         <!-- /page header -->
 
+        <div class="row">
+            <div class="col">
+                <p class="shadow-sm p-3 mb-5 bg-white rounded" id="p1" style="color: black;">
+                    {{ request.META.HTTP_HOST }}/account/sign-up/{{user.username}}  
+                </p>
+                
+            </div>
+            <div class="col">
+                <center><button type="button" class="btn btn-success" onclick="copyToClipboard('#p1')">Copy
+                    Link</button></center>
+            </div>
+            
+        </div><br>
+
         <!-- Grid -->
         <div class="row">
-
+        
             <!-- Grid Item -->
             <div class="col-xl-3 col-sm-6">
 
                 <!-- Card -->
                 <div class="dt-card">
 
-                    <!-- Card Header -->
+                    <!-- Card Header -->        
+                    
                     <div class="dt-card__header px-5 pt-4 mb-4">
 
                         <!-- Card Heading -->
@@ -1365,6 +1381,21 @@
     <!-- /footer -->
 </div>
 <!-- /site content wrapper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+<script>
+    function copyToClipboard(element) {
+
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        $.notify("Link copied!", "success");
+
+        
+    }
+</script>
 
 
 {% endblock content %}
