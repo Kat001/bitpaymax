@@ -167,3 +167,6 @@ OPENBANK_BASE_URL = "https://icp-api.bankopen.co"
 # Twilio setup varioables....
 TWILIO_S_ID = "AC3e216bef2b2d10f3d43b8eb3aa9e7b9e"
 TWILIO_AUTH_TOKEN = "959f6756d49879626854eefc142cad87"
+
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
