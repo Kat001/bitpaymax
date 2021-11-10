@@ -7,6 +7,7 @@ urlpatterns = [
     # Profile related paths.....
     path('personal-info/', views.personalInfo, name="personalinfo"),
     path('update-profile/', views.updateProfile, name="updateprofile"),
+    path('bank-details/', views.bankDetails, name="bankdetails"),
     path('change-password/', views.changePassword, name="changepassword"),
     path('change-txn-password/', views.changeTxnPassword, name="changetxnpassword"),
 

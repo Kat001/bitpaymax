@@ -12,6 +12,7 @@ from profile_app.models import LevelIncome
 from profile_app.models import Roiincome
 from profile_app.models import Withdrawal
 from profile_app.models import SupportTicket
+from payment.models import Bank_Info
 
 from django.db.models import Sum
 
@@ -801,3 +802,39 @@ def adminWithdrawalAccept(request,iid):
         }
     return render(request,'adminwithdrawal.html',d)
 
+@login_required
+def bankDetails(request):
+    user = request.user
+    d = {}
+    try:
+        bank_detail = Bank_Info.objects.get(user=user)
+        bank = True
+        d['bank'] = bank
+        d['bank_detail'] = bank_detail
+    except Bank_Info.DoesNotExist:
+        bank = False
+
+    if request.method == 'POST':
+        account_holder_name = request.POST.get('accountholdername')
+        bank_name = request.POST.get('bankname')
+        account_no = request.POST.get('accountno')
+        confirm_account_no = request.POST.get('confirmaccountno')
+        ifsc_ecode = request.POST.get('ifscecode')
+        branch_name = request.POST.get('branchname')
+        transaction_pass = request.POST.get('txn_pass')
+        
+        if transaction_pass == user.txn_password:
+            if account_no == confirm_account_no:
+                bank_obj = Bank_Info(user=user,account_holder_name=account_holder_name, 
+                            account_number=account_no, branch_name=branch_name, ifsc_code=ifsc_ecode,
+                            bank_name=bank_name, )
+                bank_obj.save()
+                return redirect('bankdetails')
+            else:
+                messages.error(request,'Account no and confirm account no are not same!!')
+                return redirect('bankdetails')
+        else:
+            messages.error(request,'Wrong Transaction Password!!')
+            return redirect('bankdetails')            
+
+    return render(request,'bankdetails.html',d)

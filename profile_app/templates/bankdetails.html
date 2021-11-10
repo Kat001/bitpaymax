@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+<div class="dt-content-wrapper">
+
+    <!-- Site Content -->
+    <div class="dt-content">
+        <!-- Page Header -->
+        <div class="dt-page__header">
+            <h1 class="dt-page__title">Bank Details</h1>
+        </div>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        <!-- /page header -->
+        {% if bank %}
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Username</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    {{ user.username }}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Account Holder name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    {{ bank_detail.account_holder_name }}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Account No</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    {{ bank_detail.account_number}}
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">IFSC code</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    {{ bank_detail.ifsc_code }}
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Bank Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    {{ bank_detail.bank_name }}
+                </div>
+            </div>
+            <hr>
+
+        </div>
+
+        {% else %}
+
+        <div id="content" class="p-4 p-md-5 pt-5">
+
+            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+     
+                <div class="form-group">
+                    <label for="name">Account Holder Name:</label>
+                    <input type="text" class="form-control" value="" name="accountholdername">
+                </div>
+                <div class="form-group">
+                    <label for="bankname">Bank Name:</label>
+                    <input type="text" class="form-control" value="" name="bankname">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Account No:</label>
+                    <input type="number" class="form-control" value="" name="accountno">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Confirm Account No:</label>
+                    <input type="number" class="form-control" id="inputAddress" value="" name="confirmaccountno">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">IFSC code:</label>
+                    <input type="text" class="form-control" id="inputAddress" value="" name="ifscecode">
+                </div>
+                <div class="form-group">
+                    <label>Branch Name:</label>
+                    <input type="text" class="form-control" value="" name="branchname">
+                </div>
+
+
+        
+        
+                <div class="form-group">
+                    <label for="inputAddress">Transection Password</label>
+                    <input type="Password" class="form-control" id="inputPassword" name="txn_pass" autocomplete="false">
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        
+        </div>
+
+        {% endif %}
+
+
+
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="dt-footer">
+        Copyright Bitpaymax © 2021
+    </footer>
+    <!-- /footer -->
+</div>
+<!-- /site content wrapper -->
+
+
+{% endblock content %}
