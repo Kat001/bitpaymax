@@ -206,8 +206,27 @@
         </div>
     </section>
     <!-- END SECTION BANNER -->
+<section>
+    <div class="container-fluid">
+       
+        
+        <div class="row gallery">
+          
+        {% for image in images %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <a href="https://cdn.pixabay.com/photo/2017/04/08/22/26/buddhism-2214532__480.jpg">
+                <img class="img-fluid"src="{{ image.image.url }}">
+                </a>
+            </div>
+        {% endfor %}
+         
+        </div>
+        
+    </div>
+</section>
+      
 
-    <!-- START SECTION SERVICES -->
+      <!-- START SECTION SERVICES -->
     <section id="service" class="small_pb small_pt">
         <div class="container">
             <div class="row align-items-center">
@@ -246,6 +265,10 @@
         </div>
     </section>
     <!-- END SECTION SERVICES -->
+
+
+
+
 
     <!-- START SECTION ABOUT US -->
     <section id="about" class="small_pt">
@@ -898,8 +921,9 @@
     <a href="#" class="scrollup btn-default"><i class="ion-ios-arrow-up"></i></a>
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+   
     <script>
+        
  $(window).load(function(){        
    $('#myModal').modal('show');
     }); 
